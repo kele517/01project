@@ -120,7 +120,7 @@ if ( ! function_exists('delete_files'))
 	 *
 	 * @param	string	$path		File path
 	 * @param	bool	$del_dir	Whether to delete any directories found in the path
-	 * @param	bool	$htdocs		Whether to skip deleting .htaccess and index page files
+	 * @param	bool	$htdocs		Whether to skip deleting .htaccess and home page files
 	 * @param	int	$_level		Current directory depth level (default: 0; internal use only)
 	 * @return	bool
 	 */
@@ -142,7 +142,7 @@ if ( ! function_exists('delete_files'))
 				{
 					delete_files($path.DIRECTORY_SEPARATOR.$filename, $del_dir, $htdocs, $_level + 1);
 				}
-				elseif ($htdocs !== TRUE OR ! preg_match('/^(\.htaccess|index\.(html|htm|php)|web\.config)$/i', $filename))
+				elseif ($htdocs !== TRUE OR ! preg_match('/^(\.htaccess|home\.(html|htm|php)|web\.config)$/i', $filename))
 				{
 					@unlink($path.DIRECTORY_SEPARATOR.$filename);
 				}

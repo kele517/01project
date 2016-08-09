@@ -94,7 +94,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 		}
 		elseif (preg_match('#(?:tcp://)?([^:?]+)(?:\:(\d+))?(\?.+)?#', $this->_config['save_path'], $matches))
 		{
-			isset($matches[3]) OR $matches[3] = ''; // Just to avoid undefined index notices below
+			isset($matches[3]) OR $matches[3] = ''; // Just to avoid undefined home notices below
 			$this->_config['save_path'] = array(
 				'host' => $matches[1],
 				'port' => empty($matches[2]) ? NULL : $matches[2],
@@ -145,7 +145,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 		}
 		elseif (isset($this->_config['save_path']['database']) && ! $redis->select($this->_config['save_path']['database']))
 		{
-			log_message('error', 'Session: Unable to select Redis database with index '.$this->_config['save_path']['database']);
+			log_message('error', 'Session: Unable to select Redis database with home '.$this->_config['save_path']['database']);
 		}
 		else
 		{

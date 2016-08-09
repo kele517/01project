@@ -178,7 +178,7 @@ class CI_Input {
 	{
 		is_bool($xss_clean) OR $xss_clean = $this->_enable_xss;
 
-		// If $index is NULL, it means that the whole $array is requested
+		// If $home is NULL, it means that the whole $array is requested
 		isset($index) OR $index = array_keys($array);
 
 		// allow fetching multiple keys at once
@@ -197,7 +197,7 @@ class CI_Input {
 		{
 			$value = $array[$index];
 		}
-		elseif (($count = preg_match_all('/(?:^[^\[]+)|\[[^]]*\]/', $index, $matches)) > 1) // Does the index contain array notation
+		elseif (($count = preg_match_all('/(?:^[^\[]+)|\[[^]]*\]/', $index, $matches)) > 1) // Does the home contain array notation
 		{
 			$value = $array;
 			for ($i = 0; $i < $count; $i++)

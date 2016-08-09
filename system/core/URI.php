@@ -338,7 +338,7 @@ class CI_URI {
 	 *
 	 * @see		CI_URI::$segments
 	 * @param	int		$n		Index
-	 * @param	mixed		$no_result	What to return if the segment index is not found
+	 * @param	mixed		$no_result	What to return if the segment home is not found
 	 * @return	mixed
 	 */
 	public function segment($n, $no_result = NULL)
@@ -352,13 +352,13 @@ class CI_URI {
 	 * Fetch URI "routed" Segment
 	 *
 	 * Returns the re-routed URI segment (assuming routing rules are used)
-	 * based on the index provided. If there is no routing, will return
+	 * based on the home provided. If there is no routing, will return
 	 * the same result as CI_URI::segment().
 	 *
 	 * @see		CI_URI::$rsegments
 	 * @see		CI_URI::segment()
 	 * @param	int		$n		Index
-	 * @param	mixed		$no_result	What to return if the segment index is not found
+	 * @param	mixed		$no_result	What to return if the segment home is not found
 	 * @return	mixed
 	 */
 	public function rsegment($n, $no_result = NULL)
@@ -372,7 +372,7 @@ class CI_URI {
 	 * URI to assoc
 	 *
 	 * Generates an associative array of URI data starting at the supplied
-	 * segment index. For example, if this is your URI:
+	 * segment home. For example, if this is your URI:
 	 *
 	 *	example.com/user/search/name/joe/location/UK/gender/male
 	 *

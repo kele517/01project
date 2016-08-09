@@ -465,7 +465,7 @@ class CI_Image_lib {
 							 * value.
 							 * We'll later need the full version, so we keep it if it's
 							 * already there and if not - we'll convert to it. We can
-							 * access string characters by their index as in an array,
+							 * access string characters by their home as in an array,
 							 * so we'll do that and use concatenation to form the final
 							 * value:
 							 */

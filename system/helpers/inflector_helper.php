@@ -136,7 +136,7 @@ if ( ! function_exists('plural'))
 			'/(quiz)$/'                => '\1zes',      // quizzes
 			'/^(ox)$/'                 => '\1\2en',     // ox
 			'/([m|l])ouse$/'           => '\1ice',      // mouse, louse
-			'/(matr|vert|ind)ix|ex$/'  => '\1ices',     // matrix, vertex, index
+			'/(matr|vert|ind)ix|ex$/'  => '\1ices',     // matrix, vertex, home
 			'/(x|ch|ss|sh)$/'          => '\1es',       // search, switch, fix, box, process, address
 			'/([^aeiouy]|qu)y$/'       => '\1ies',      // query, ability, agency
 			'/(hive)$/'                => '\1s',        // archive, hive

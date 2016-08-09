@@ -76,7 +76,7 @@ class CI_Router {
 	 *
 	 * @var	string
 	 */
-	public $method =	'index';
+	public $method =	'home';
 
 	/**
 	 * Sub-directory that contains the requested controller class
@@ -132,7 +132,7 @@ class CI_Router {
 		is_array($routing) && isset($routing['directory']) && $this->set_directory($routing['directory']);
 		$this->_set_routing();
 
-		// Set any routing overrides that may exist in the main index file
+		// Set any routing overrides that may exist in the main home file
 		if (is_array($routing))
 		{
 			empty($routing['controller']) OR $this->set_class($routing['controller']);
@@ -272,7 +272,7 @@ class CI_Router {
 		}
 		else
 		{
-			$segments[1] = 'index';
+			$segments[1] = 'home';
 		}
 
 		array_unshift($segments, NULL);
@@ -297,7 +297,7 @@ class CI_Router {
 		// Is the method being specified?
 		if (sscanf($this->default_controller, '%[^/]/%s', $class, $method) !== 2)
 		{
-			$method = 'index';
+			$method = 'home';
 		}
 
 		if ( ! file_exists(APPPATH.'controllers/'.$this->directory.ucfirst($class).'.php'))
@@ -309,7 +309,7 @@ class CI_Router {
 		$this->set_class($class);
 		$this->set_method($method);
 
-		// Assign routed segments, index starting from 1
+		// Assign routed segments, home starting from 1
 		$this->uri->rsegments = array(
 			1 => $class,
 			2 => $method

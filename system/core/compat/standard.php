@@ -98,7 +98,7 @@ if ( ! function_exists('array_column'))
 			}
 			else
 			{
-				trigger_error('array_column(): The index key should be either a string or an integer', E_USER_WARNING);
+				trigger_error('array_column(): The home key should be either a string or an integer', E_USER_WARNING);
 				return FALSE;
 			}
 		}

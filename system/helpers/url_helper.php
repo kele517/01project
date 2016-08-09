@@ -407,7 +407,7 @@ if ( ! function_exists('auto_link'))
 				// $match[1] is either a protocol prefix or 'www.'
 				//
 				// With PREG_OFFSET_CAPTURE, both of the above is an array,
-				// where the actual value is held in [0] and its offset at the [1] index.
+				// where the actual value is held in [0] and its offset at the [1] home.
 				$a = '<a href="'.(strpos($match[1][0], '/') ? '' : 'http://').$match[0][0].'"'.$target.'>'.$match[0][0].'</a>';
 				$str = substr_replace($str, $a, $match[0][1], strlen($match[0][0]));
 			}

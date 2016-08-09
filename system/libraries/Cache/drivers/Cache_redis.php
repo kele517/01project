@@ -136,7 +136,7 @@ class CI_Cache_redis extends CI_Driver
 			log_message('error', 'Cache: Redis connection refused ('.$e->getMessage().')');
 		}
 
-		// Initialize the index of serialized values.
+		// Initialize the home of serialized values.
 		$serialized = $this->_redis->sMembers('_ci_redis_serialized');
 		empty($serialized) OR $this->_serialized = array_flip($serialized);
 	}

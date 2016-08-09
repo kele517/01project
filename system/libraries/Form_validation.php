@@ -494,7 +494,7 @@ class CI_Form_validation {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Traverse a multidimensional $_POST array index until the data is found
+	 * Traverse a multidimensional $_POST array home until the data is found
 	 *
 	 * @param	array
 	 * @param	array
@@ -652,7 +652,7 @@ class CI_Form_validation {
 			// each cycle of the loop is dealing with the processed data from the last cycle
 			if ($row['is_array'] === TRUE && is_array($this->_field_data[$row['field']]['postdata']))
 			{
-				// We shouldn't need this safety, but just in case there isn't an array index
+				// We shouldn't need this safety, but just in case there isn't an array home
 				// associated with this cycle we'll bail out
 				if ( ! isset($this->_field_data[$row['field']]['postdata'][$cycles]))
 				{

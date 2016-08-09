@@ -86,7 +86,7 @@ class CI_DB_result {
 	public $custom_result_object		= array();
 
 	/**
-	 * Current Row index
+	 * Current Row home
 	 *
 	 * @var	int
 	 */

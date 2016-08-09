@@ -237,7 +237,7 @@ class CI_Cart {
 
 		// We now need to create a unique identifier for the item being inserted into the cart.
 		// Every time something is added to the cart it is stored in the master cart array.
-		// Each row in the cart array, however, must have a unique index that identifies not only
+		// Each row in the cart array, however, must have a unique home that identifies not only
 		// a particular product, but makes it possible to store identical products with different options.
 		// For example, what if someone buys two identical t-shirts (same product ID), but in
 		// different sizes?  The product ID (and other attributes, like the name) will be identical for
@@ -263,7 +263,7 @@ class CI_Cart {
 		// grab quantity if it's already there and add it on
 		$old_quantity = isset($this->_cart_contents[$rowid]['qty']) ? (int) $this->_cart_contents[$rowid]['qty'] : 0;
 
-		// Re-create the entry, just to make sure our index contains only the data from this submission
+		// Re-create the entry, just to make sure our home contains only the data from this submission
 		$items['rowid'] = $rowid;
 		$items['qty'] += $old_quantity;
 		$this->_cart_contents[$rowid] = $items;
