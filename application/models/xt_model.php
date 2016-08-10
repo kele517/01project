@@ -9,7 +9,7 @@
 class XT_Model extends CI_Model
 {
     protected  $mTable;
-    protected  $mPKid = 'id';
+    protected  $mPkId = 'id';
 
     public function __construct()
     {
@@ -26,11 +26,71 @@ class XT_Model extends CI_Model
         return $this->db->query($sql);
     }
 
-    public function get_by_where($where = '1=1', $field = '*', $tb = "", $limit = '')
+    public function get_by_where($where = '1=1', $fields = '*', $tb = "", $limit = '', $order_by = '')
     {
         if(empty($tb)){
             $tb = $this->mTable;
         }
+        $result = $this->db->select($fields)
+            ->from($tb)
+            ->where($where)
+            ->limit($limit)
+            ->order_by($order_by)
+            ->get()
+            ->result_array();
+        return $result;
+    }
+
+    /**
+     *
+     * @param int $page           当前页数     默认为1
+     * @param int $pagesize       每页记录数   默认为10
+     * @param array $where        查询条件     默认为空
+     * @param string $fields      查询字段值
+     * @param string $order_by    查询排序
+     * @param string $tb          查询时涉及到的表
+     * @return mixed
+     */
+    public function fetch_page($page = 1, $pagesize = 10, $where = array(), $fields = '*', $order_by = '', $tb = '')
+    {
+        if (!$tb) $tb = $this->mTable;
+        $order_by = $order_by ? $order_by : $this->mPkId . ' DESC';
+        $fields_count = 'COUNT(1) AS count';
+        $this->db->select($fields_count, FALSE)
+            ->from($tb);
+        if(is_array($where)) {
+            foreach ($where as $key => $val) {
+                if ($key{0} == '@' && is_array($val)) {// array('@where'=>array('a'=>1,'b'=>1))
+                    $key = substr($key, 1);
+                    foreach ($val as $k => $v) {
+                        $this->db->$key($k, $v);
+                    }
+                    continue;
+                }
+                if (is_array($val)) {
+                    $this->db->where_in($key, $val);
+                } else {
+                    $bAuto = true;
+                    if ($tb)
+                        $bAuto = false;
+                    $this->db->where($key, $val, $bAuto);
+                }
+            }
+        }else{
+            $this->db->where($where);
+        }
+        $result = $this->db->get()->row_array();
+
+        $num = $result['count'];
+        $result['rows'] = array();
+        if ($num > 0) {
+            $sql = $this->db->last_query();
+            $sql = str_replace($fields_count, $fields, $sql);
+            $sql .= ' ORDER BY ' . $order_by;
+            $sql .= ' LIMIT ' . (($page - 1) * $pagesize) . ',' . $pagesize;
+            $result['rows'] = $this->db->query($sql)->result_array();
+        }
+        return $result;
     }
     /**
      * 数据库插入方法

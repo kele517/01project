@@ -10,8 +10,4 @@ class Article_model extends XT_Model
 {
     protected $mTable = "article";
 
-    public function getAll($where = '', $field = '')
-    {
-
-    }
 }
