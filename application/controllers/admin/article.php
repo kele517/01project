@@ -12,13 +12,14 @@ class Article extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Article_model');
+        $this->lang->load('admin_layout');
     }
 
     public function index(){
         $page = _get_page();
         $pagesize = $this->input->get_post('pagesize') ? (int)$this->input->get_post('pagesize') : 10;
         $data = $this->Article_model->fetch_page($page, $pagesize, 'status <> -1');
-        if(empty($data)){
+        if(empty($data['rows'])){
             $data['msg'] = "啊哦，没有文章记录，<a href='add'>去发布</a>";
         }
         $config['base_url'] = BASE_SITE_PATH.'/admin/article/index';
@@ -26,9 +27,9 @@ class Article extends CI_Controller
         $config['pagesize'] = $pagesize;
 
         $this->pagination->initialize($config);
-        echo $this->pagination->create_links();
+        $data['pages'] = $this->pagination->create_links();
 
-        $this->load->view('admin/article/index', $data);
+        get_admin_view('admin/article/index', $data);
     }
 
     public function add(){

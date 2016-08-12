@@ -390,6 +390,13 @@ function dkcache($key)
 }
 
 /***------------------cache end-------------------------------***/
-
+function get_admin_view($view, $data){
+	$ci = & get_instance();
+	$ci->load->view('admin/layout/head');
+	$ci->load->view('admin/layout/navbar');
+	$ci->load->view('admin/layout/sidebar');
+	$ci->load->view($view,$data);
+	$ci->load->view('admin/layout/foot');
+}
 
 ?>
