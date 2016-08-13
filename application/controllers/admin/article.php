@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Created by PhpStorm.
  * User: Administrator
@@ -12,7 +12,6 @@ class Article extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Article_model');
-        $this->lang->load('admin_layout');
     }
 
     public function index(){
@@ -62,12 +61,12 @@ class Article extends CI_Controller
                 );
                 $flag = $this->Article_model->insert_update($data);
                 if($flag)
-                    ;//弹窗提示添加成功
+                    showMessage('success', '添加成功');//弹窗提示添加成功
                 else
-                    ;//弹窗提示添加失败
+                    showMessage('error', '添加失败');//弹窗提示添加失败
             }
         }
 
-        $this->load->view('admin/article/add');
+        get_admin_view('admin/article/add');
     }
 }

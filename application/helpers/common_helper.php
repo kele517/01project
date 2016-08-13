@@ -2,67 +2,67 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ( ! function_exists('get_json') ){
-	function _get_json($data)
-	{
-		$callback = isset($_GET['callback']) ? $_GET['callback'] : '';
-		$data = json_encode($data);
-		if ($callback && preg_match('~^(jQuery)[\d\_]+$~', $callback))
-		{
-			echo $callback.'('.$data.')';
-		}
-		else
-		{
-			echo $data;
-		}
-		exit;
-	}
+    function _get_json($data)
+    {
+        $callback = isset($_GET['callback']) ? $_GET['callback'] : '';
+        $data = json_encode($data);
+        if ($callback && preg_match('~^(jQuery)[\d\_]+$~', $callback))
+        {
+            echo $callback.'('.$data.')';
+        }
+        else
+        {
+            echo $data;
+        }
+        exit;
+    }
 }
 
 if ( ! function_exists('ip_long') ){
-	function _ip_long($ip='')
-	{
-		$CI =& get_instance();
-		return sprintf('%u', ip2long( $ip ? $ip : $CI->input->ip_address() ));
-	}
+    function _ip_long($ip='')
+    {
+        $CI =& get_instance();
+        return sprintf('%u', ip2long( $ip ? $ip : $CI->input->ip_address() ));
+    }
 }
 
 function _current_url(){//获取当前URL
-	$url = $_SERVER['PHP_SELF']; 
-	$filename= substr( $url , strrpos($url , '/')+1 );
-	return $filename;
+    $url = $_SERVER['PHP_SELF']; 
+    $filename= substr( $url , strrpos($url , '/')+1 );
+    return $filename;
 }
 
 function get_icon_url_full_path(&$lists ,$filed){
-	if(isset($lists[$filed])){
-		if(!empty($lists[$filed])){
-			$lists[$filed] = BASE_SITE_URL.'/'.$lists[$filed];
-		}
-	}else{
-		foreach($lists as $k => &$v){
-			if(!empty($v[$filed])){
-				$v[$filed] = BASE_SITE_URL.'/'.$v[$filed];
-			}
-		}
-	}
+    if(isset($lists[$filed])){
+        if(!empty($lists[$filed])){
+            $lists[$filed] = BASE_SITE_URL.'/'.$lists[$filed];
+        }
+    }else{
+        foreach($lists as $k => &$v){
+            if(!empty($v[$filed])){
+                $v[$filed] = BASE_SITE_URL.'/'.$v[$filed];
+            }
+        }
+    }
 }
 
 
 function _get_db($group='xt')
 {
-	static $db=array();
-	if (!isset($db[$group])){
-		$CI =& get_instance();
-		$db[$group] = $CI->load->database($group, TRUE);
-		$db_name = 'xt_'.$group;
-		$CI->$db_name = $db[$group];
-	}
-	return $db[$group];
+    static $db=array();
+    if (!isset($db[$group])){
+        $CI =& get_instance();
+        $db[$group] = $CI->load->database($group, TRUE);
+        $db_name = 'xt_'.$group;
+        $CI->$db_name = $db[$group];
+    }
+    return $db[$group];
 }
 
 function _get_config($key)
 {
-	$CI     =& get_instance();
-	return $CI->config->item($key);
+    $CI     =& get_instance();
+    return $CI->config->item($key);
 }
 
 /**
@@ -73,92 +73,92 @@ function _get_config($key)
  */
 function _get_key_val($val, $flag=FALSE)
 {
-	if (!$val)return '';
-	if ($flag)
-	{
-		$md5 = substr($val, -32);
-		$str = substr($val,0,-32);
-		if(_get_config('encrypt_open'))
-		{
-			if ( $md5 == md5(session_id().'!#%&)'.$str))
-				return $str;
-			else
-			{
-				//redirect('/home/expired');
-				return '';
-			}
-			
-		}
-		else
-			return $str;
+    if (!$val)return '';
+    if ($flag)
+    {
+        $md5 = substr($val, -32);
+        $str = substr($val,0,-32);
+        if(_get_config('encrypt_open'))
+        {
+            if ( $md5 == md5(session_id().'!#%&)'.$str))
+                return $str;
+            else
+            {
+                //redirect('/home/expired');
+                return '';
+            }
+            
+        }
+        else
+            return $str;
 
-	}
-	else
-	{
-		return $val.md5(session_id().'!#%&)'.$val);
-	}
+    }
+    else
+    {
+        return $val.md5(session_id().'!#%&)'.$val);
+    }
 }
 
 function _get_html_cssjs($pathKey, $files, $type='css')
 {
-	$strResult = '';
+    $strResult = '';
 
-	$path = _get_cfg_path($pathKey);
-	$files = trim($files, ',');
-	$arr = explode(',', $files);
-	foreach ($arr as $v) {
-		$v = trim($v);
-		if($type=='css')
-			$strResult .='<link rel="stylesheet" href="'.$path.$v.'" />'."\r\n";
-		else
-			$strResult .='<script src="'.$path.$v.'"></script>'."\r\n";
-	}
+    $path = _get_cfg_path($pathKey);
+    $files = trim($files, ',');
+    $arr = explode(',', $files);
+    foreach ($arr as $v) {
+        $v = trim($v);
+        if($type=='css')
+            $strResult .='<link rel="stylesheet" href="'.$path.$v.'" />'."\r\n";
+        else
+            $strResult .='<script src="'.$path.$v.'"></script>'."\r\n";
+    }
 
-	return $strResult;
+    return $strResult;
 }
 
 
 function _get_cfg_path($key)
 {
-	$CI     =& get_instance();
-	$arrCfgpath = $CI->config->item('cfg_path');
-	if(!empty($arrCfgpath[$key]))
-		return $arrCfgpath[$key];
-	else
-		return '';
+    $CI     =& get_instance();
+    $arrCfgpath = $CI->config->item('cfg_path');
+    if(!empty($arrCfgpath[$key]))
+        return $arrCfgpath[$key];
+    else
+        return '';
 }
 
 function _create_url($base_url, $params=array())
 {
-	if (substr($base_url, 0, 7) !='http://')$base_url = base_url($base_url);
-	return $base_url._array_to_url($params);
+    if (substr($base_url, 0, 7) !='http://')$base_url = base_url($base_url);
+    return $base_url._array_to_url($params);
 }
 
 function _array_to_url($params=array())
 {
-	$url = array();
-	if ($params)
-	foreach($params as $k=>$v)
-	{
-		if (strlen($v)==0)continue;
-		$url[] = $k.'='.urlencode($v);
-	}
-	return $url ? '?'.join('&',$url):'';
+    $url = array();
+    if ($params)
+    foreach($params as $k=>$v)
+    {
+        if (strlen($v)==0)continue;
+        $url[] = $k.'='.urlencode($v);
+    }
+    return $url ? '?'.join('&',$url):'';
 }
 
 function _get_page($name='page')
 {
-	$CI =& get_instance();
-	$page = (int)$CI->input->get($name);
-	return max($page,1);
+    $CI =& get_instance();
+    $page = (int)$CI->input->get($name);
+    return max($page,1);
 }
 
 function _is_empty($val)
 {
-	if(empty($val))
-		return '';
-	else
-		return $val;
+    if(empty($val))
+        return '';
+    else
+        return $val;
 }
 
 /**
@@ -182,7 +182,7 @@ function _is_empty($val)
 
 // function http_post_data($url, $data_string){
 
-// 	$ch = curl_init();  
+//     $ch = curl_init();  
 //     curl_setopt($ch, CURLOPT_POST, 1);  
 //     curl_setopt($ch, CURLOPT_URL, $url);  
 //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);  
@@ -209,19 +209,19 @@ function _is_empty($val)
  * @return array
  */
 function array_under_reset($array, $key, $type=1){
-	if (is_array($array)){
-		$tmp = array();
-		foreach ($array as $v) {
-			if ($type === 1){
-				$tmp[$v[$key]] = $v;
-			}elseif($type === 2){
-				$tmp[$v[$key]][] = $v;
-			}
-		}
-		return $tmp;
-	}else{
-		return $array;
-	}
+    if (is_array($array)){
+        $tmp = array();
+        foreach ($array as $v) {
+            if ($type === 1){
+                $tmp[$v[$key]] = $v;
+            }elseif($type === 2){
+                $tmp[$v[$key]][] = $v;
+            }
+        }
+        return $tmp;
+    }else{
+        return $array;
+    }
 }
 
 
@@ -233,45 +233,45 @@ function array_under_reset($array, $key, $type=1){
  */
 function C($key){
 
-	if(strpos($key, '.'))
-	{
-		$key = explode('.',$key);
+    if(strpos($key, '.'))
+    {
+        $key = explode('.',$key);
 
-		$CI =& get_instance();
-		$arrConfig = $CI->config->item($key[0]);
+        $CI =& get_instance();
+        $arrConfig = $CI->config->item($key[0]);
 
-	 	if (isset($key[2])){
+         if (isset($key[2])){
                 return $arrConfig[$key[1]][$key[2]];
         }else{
                 return $arrConfig[$key[1]];
         }
-	}
-	else
-	{
-		$setting = ($setting = rkcache('setting')) ? $setting : rkcache('setting',true);
+    }
+    else
+    {
+        $setting = ($setting = rkcache('setting')) ? $setting : rkcache('setting',true);
 
-		if(!empty($setting[$key]))
+        if(!empty($setting[$key]))
             return $setting[$key];
         else
-        	return false;
-	}
+            return false;
+    }
 }
 
 function M($model)
 {
-	$model = ucfirst($model).'_model';
-	$CI =& get_instance();
-	$CI->load->model($model);
-	return $CI->$model;
+    $model = ucfirst($model).'_model';
+    $CI =& get_instance();
+    $CI->load->model($model);
+    return $CI->$model;
 }
 
 
 // function T($table)
 // {
-// 	$model = 'XT_Model';
-// 	$CI =& get_instance();
-// 	$CI->load->model($model);
-// 	return $CI->$model->set_table(strtolower($table));
+//     $model = 'XT_Model';
+//     $CI =& get_instance();
+//     $CI->load->model($model);
+//     return $CI->$model->set_table(strtolower($table));
 // }
 
 /*
@@ -311,7 +311,7 @@ function request_uri()
  */
 function rkcache($key, $callback = false)
 {
-	$CI     =& get_instance();
+    $CI     =& get_instance();
 
     if ($CI->config->item('cache_open')) {
         $cacher = $CI->cache->redis;
@@ -327,7 +327,7 @@ function rkcache($key, $callback = false)
 
     if ($value === false && $callback !== false) {
         if ($callback === true) {
-        	
+            
             $callback = array(M('cache'), 'call');
         }
 
@@ -352,7 +352,7 @@ function rkcache($key, $callback = false)
  */
 function wkcache($key, $value, $expire = null)
 {
-	$CI     =& get_instance();
+    $CI     =& get_instance();
 
     if ($CI->config->item('cache_open')) {
         $cacher = $CI->cache->redis;
@@ -374,7 +374,7 @@ function wkcache($key, $value, $expire = null)
  */
 function dkcache($key)
 {
-	$CI     =& get_instance();
+    $CI     =& get_instance();
 
     if ($CI->config->item('cache_open')) {
         $cacher = $CI->cache->redis;
@@ -390,13 +390,23 @@ function dkcache($key)
 }
 
 /***------------------cache end-------------------------------***/
-function get_admin_view($view, $data){
-	$ci = & get_instance();
-	$ci->load->view('admin/layout/head');
-	$ci->load->view('admin/layout/navbar');
-	$ci->load->view('admin/layout/sidebar');
-	$ci->load->view($view,$data);
-	$ci->load->view('admin/layout/foot');
+
+//获取后台模板
+function get_admin_view($view, $data = '')
+{
+    $ci = & get_instance();
+    $ci->load->view('admin/layout/head');
+    $ci->load->view('admin/layout/navbar');
+    $ci->load->view('admin/layout/sidebar');
+    $ci->load->view($view,$data);
+    $ci->load->view('admin/layout/foot');
 }
 
+function showMessage($type, $msg)
+{
+    $str = "<script type='text/javascript'>";
+    $str .= "toastr.options.positionClass = 'toast-top-right'; if($type == 'success') toastr.success($msg); elseif($type == 'error') toastr.error($msg)";
+    $str .= "</script>";
+    echo $str;
+}
 ?>

@@ -1,5 +1,5 @@
 <!-- #section:basics/sidebar -->
-<div id="sidebar" class="sidebar                  responsive">
+<div id="sidebar" class="sidebar responsive">
     <script type="text/javascript">
         try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
     </script>
@@ -41,177 +41,35 @@
         <li class="">
             <a href="index.html">
                 <i class="menu-icon fa fa-tachometer"></i>
-                <span class="menu-text"> Dashboard </span>
+                <span class="menu-text"> Home </span>
             </a>
-
-            <b class="arrow"></b>
         </li>
-
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-desktop"></i>
-                <span class="menu-text"> UI &amp; Elements </span>
-
+                <span class="menu-text"> 文章管理 </span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
-
             <b class="arrow"></b>
-
             <ul class="submenu">
                 <li class="">
-                    <a href="#" class="dropdown-toggle">
+                    <a href="<?php echo ADMIN_SITE_URL.'/article/index'?>" class="dropdown-toggle">
                         <i class="menu-icon fa fa-caret-right"></i>
-
-                        Layouts
+                        文章列表
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
-
-                    <b class="arrow"></b>
-
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="top-menu.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Top Menu
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="mobile-menu-1.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Default Mobile Menu
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="mobile-menu-2.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Mobile Menu 2
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="mobile-menu-3.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                Mobile Menu 3
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
                 </li>
-
                 <li class="">
-                    <a href="typography.html">
+                    <a href="<?php echo ADMIN_SITE_URL.'/article/add'?>">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Typography
+                        添加文章
                     </a>
-
-                    <b class="arrow"></b>
                 </li>
-
                 <li class="">
-                    <a href="elements.html">
+                    <a href="<?php echo ADMIN_SITE_URL.'/article/edit'?>">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Elements
+                        修改文章
                     </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="buttons.html">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Buttons &amp; Icons
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="treeview.html">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Treeview
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="jquery-ui.html">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        jQuery UI
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="nestable-list.html">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Nestable Lists
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-caret-right"></i>
-
-                        Three Level Menu
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
-
-                    <b class="arrow"></b>
-
-                    <ul class="submenu">
-                        <li class="">
-                            <a href="#">
-                                <i class="menu-icon fa fa-leaf green"></i>
-                                Item #1
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="#" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-pencil orange"></i>
-
-                                4th level
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
-
-                            <b class="arrow"></b>
-
-                            <ul class="submenu">
-                                <li class="">
-                                    <a href="#">
-                                        <i class="menu-icon fa fa-plus purple"></i>
-                                        Add Product
-                                    </a>
-
-                                    <b class="arrow"></b>
-                                </li>
-
-                                <li class="">
-                                    <a href="#">
-                                        <i class="menu-icon fa fa-eye pink"></i>
-                                        View Products
-                                    </a>
-
-                                    <b class="arrow"></b>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </li>
@@ -219,30 +77,30 @@
         <li class="active open">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
-                <span class="menu-text"> Tables </span>
+                <span class="menu-text"> 分类管理 </span>
 
                 <b class="arrow fa fa-angle-down"></b>
             </a>
-
             <b class="arrow"></b>
-
             <ul class="submenu">
                 <li class="active">
-                    <a href="tables.html">
+                    <a href="<?php echo ADMIN_SITE_URL.'/category/index'?>">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Simple &amp; Dynamic
+                        分类列表
                     </a>
-
-                    <b class="arrow"></b>
                 </li>
 
                 <li class="">
-                    <a href="jqgrid.html">
+                    <a href="<?php echo ADMIN_SITE_URL.'/category/add'?>">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        jqGrid plugin
+                        添加分类
                     </a>
-
-                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="<?php echo ADMIN_SITE_URL.'/category/edit'?>">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        修改分类
+                    </a>
                 </li>
             </ul>
         </li>
@@ -250,7 +108,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-pencil-square-o"></i>
-                <span class="menu-text"> Forms </span>
+                <span class="menu-text"> 系统管理 </span>
 
                 <b class="arrow fa fa-angle-down"></b>
             </a>
